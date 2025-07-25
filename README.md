@@ -83,5 +83,3 @@ Este backend forma parte de un sistema modular junto al frontend visual embebibl
 ```
 ```
 
----
-

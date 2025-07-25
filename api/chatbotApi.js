@@ -16,21 +16,22 @@ export default async function handler(req, res) {
         return res.status(405).json({ error: "Método no permitido" });
     }
 
-    // 📝 Extraemos el mensaje enviado desde el frontend
-    const mensajeDelUsuario = req.body.message;
+    /*   // 📝 Extraemos el mensaje enviado desde el frontend
+      const mensajeDelUsuario = req.body.message; */
 
     // Validación de entrada se evita llamadas vacías o malformadas desde el frontend:
-    if (!mensajeDelUsuario || typeof mensajeDelUsuario !== "string" || mensajeDelUsuario.trim().length === 0) {
-        return res.status(400).json({ error: "Mensaje inválido o vacío" });
+    if (!promptSistema || !promptUsuario || typeof promptUsuario !== "string" || promptUsuario.trim().length === 0) {
+        return res.status(400).json({ error: "Prompts inválidos o faltantes" });
     }
-     const { promptSistema, promptUsuario } = req.body;
 
+    const { promptSistema, promptUsuario } = req.body;
+
+
+    /*         const contexto = await generarContexto(mensajeDelUsuario);
+            const promptUsuario = generarPromptUsuario(contexto, mensajeDelUsuario);
     
-/*         const contexto = await generarContexto(mensajeDelUsuario);
-        const promptUsuario = generarPromptUsuario(contexto, mensajeDelUsuario);
-
-
- */
+    
+     */
     // 🔐 Validamos si OpenRouter está degradado por exceso de uso
     const estado = await chequearLimiteOpenRouter();
 

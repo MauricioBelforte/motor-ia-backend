@@ -11,10 +11,10 @@ import { promptSistema, generarPromptUsuario } from "../lib/armarPrompts.js";
 
 // 🔁 Función serverless que responde peticiones POST con un mensaje del modelo
 export default async function handler(req, res) {
-    // CORS: aceptar solicitudes desde otros orígenes
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    /*     // CORS: aceptar solicitudes desde otros orígenes
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+        res.setHeader("Access-Control-Allow-Headers", "Content-Type"); */
     if (req.method === "OPTIONS") {
         res.status(200).end(); // o podés devolver headers CORS explícitos
         return;
@@ -35,12 +35,17 @@ export default async function handler(req, res) {
     /*   // 📝 Extraemos el mensaje enviado desde el frontend
       const mensajeDelUsuario = req.body.message; */
 
-    // Validación de entrada se evita llamadas vacías o malformadas desde el frontend:
-    if (!promptSistema || !promptUsuario || typeof promptUsuario !== "string" || promptUsuario.trim().length === 0) {
-        return res.status(400).json({ error: "Prompts inválidos o faltantes" });
-    }
 
     const { promptSistema, promptUsuario } = req.body;
+
+    if (
+        !promptSistema ||
+        !promptUsuario ||
+        typeof promptUsuario !== "string" ||
+        promptUsuario.trim().length === 0
+    ) {
+        return res.status(400).json({ error: "Prompts inválidos o faltantes" });
+    }
 
 
     /*         const contexto = await generarContexto(mensajeDelUsuario);

@@ -1,7 +1,7 @@
 // api/chatbotApi.js
 
-import { chequearLimiteOpenRouter } from "../lib/estadoOpenRouter.js";
-import { consultarModeloConOpenRouter } from "../lib/consultasModelos.js";
+import { chequearLimiteOpenRouter } from "./lib/estadoOpenRouter.js";
+import { consultarModeloConOpenRouter } from "./lib/consultasModelos.js";
 /* 
 import { generarContexto } from "../lib/extraerContexto.js";
 

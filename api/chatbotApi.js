@@ -62,7 +62,8 @@ export default async function handler(req, res) {
             respuesta: "⚠️ Modelo OpenRouter degradado. Usando alternativa..."
         });
     }
-
+    console.log("promptSistema:", promptSistema);
+    console.log("promptUsuario:", promptUsuario);
     // 📡 Si está todo OK, consultamos al modelo normalmente
     const respuesta = await consultarModeloConOpenRouter(promptSistema, promptUsuario);
 

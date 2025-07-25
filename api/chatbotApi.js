@@ -11,6 +11,19 @@ import { promptSistema, generarPromptUsuario } from "../lib/armarPrompts.js";
 
 // 🔁 Función serverless que responde peticiones POST con un mensaje del modelo
 export default async function handler(req, res) {
+
+    if (req.method === "OPTIONS") {
+        res.status(200).end(); // o podés devolver headers CORS explícitos
+        return;
+    }
+
+    if (req.method === "OPTIONS") {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+        res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+        res.status(200).end();
+        return;
+    }
     // ⛔ Solo aceptamos POST (evita GET, PUT, etc.)
     if (req.method !== "POST") {
         return res.status(405).json({ error: "Método no permitido" });

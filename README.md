@@ -1,39 +1,48 @@
-# 🧠 chatbot-backend-vercel
 
-Backend desacoplado, modular y serverless, listo para responder prompts IA desde cualquier frontend externo. Este motor fue extraído del proyecto original [`chatbot-flotante`](https://github.com/tu-usuario/chatbot-flotante), como parte de una estrategia técnica de separación de responsabilidades y escalabilidad.
+## 🧠 motor-ia-backend
+
+Backend desacoplado, modular y serverless, listo para responder prompts IA desde cualquier frontend externo. Este motor fue extraído del proyecto original [`chatbot-flotante`](https://github.com/MauricioBelforte/chatbot-flotante-historial) que actualmente se llama [`chatbot-flotante-historial`](https://github.com/MauricioBelforte/chatbot-flotante-historial), como parte de una estrategia técnica de separación de responsabilidades y escalabilidad.
+
+> 🟢 *Renombrado desde `chatbot-backend-vercel` a `motor-ia-backend` para reflejar su propósito extendido como motor IA genérico, capaz de procesar cualquier consulta estructurada sin depender de un frontend específico.*
+
+---
 
 ## 🎯 Propósito
 
-Este repositorio contiene la capa lógica y de procesamiento IA del sistema, separada del frontend visual. Está pensado para integrarse desde cualquier cliente mediante `fetch()`.
+Este repositorio contiene la capa lógica y de procesamiento IA del sistema, separada del frontend visual. Está pensado para integrarse desde cualquier cliente mediante `fetch()`:
 
 - 🔄 Motor IA independiente del entorno visual
 - 🧪 Compatible con múltiples proveedores como OpenRouter, Groq, Ollama
 - 🧰 Listo para ser consultado por cualquier frontend, CMS o sistema externo
 - 🌐 Desplegado en Vercel con rutas controladas
 
+---
+
 ## ⚙️ Arquitectura
 
 ```text
-chatbot-backend-vercel/
+motor-ia-backend/
 ├── api/
-│   └── chatbotApi.js       # Endpoint principal: procesa prompts y responde
+│   └── chatbotApi.js            # Endpoint principal: procesa prompts y responde
 ├── lib/
-│   ├── consultasModelos.js       # Lógica por modelo específico
-│   ├── estadoOpenRouter.js       # Control dinámico de disponibilidad
-│   ├── proveedores.js            # Configuración de proveedores
-│   └── modelosPorProveedor.js    # Mapeo entre servicios y modelos
-├── vercel.json             # Configuración de rutas para deploy serverless
-├── .env                    # Claves privadas (no incluidas en este repo)
-├── LICENSE                 # Licencia MIT
-└── README.md               # Esta documentación 📘
+│   ├── consultasModelos.js      # Lógica por modelo específico
+│   ├── estadoOpenRouter.js      # Control dinámico de disponibilidad
+│   ├── proveedores.js           # Configuración de proveedores
+│   └── modelosPorProveedor.js   # Mapeo entre servicios y modelos
+├── vercel.json                  # Configuración de rutas para deploy serverless
+├── .env                         # Claves privadas (no incluidas en este repo)
+├── LICENSE                      # Licencia MIT
+└── README.md                    # Esta documentación 📘
 ```
+
+---
 
 ## 📡 Cómo consultarlo desde otro frontend
 
 Ejemplo usando `fetch()`:
 
 ```js
-const res = await fetch("https://chatbot-backend-vercel.vercel.app/api/chatbotApi", {
+const res = await fetch("https://motor-ia-backend.vercel.app/api/chatbotApi", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
@@ -54,7 +63,9 @@ console.log(respuesta);
 }
 ```
 
-> ⚠️ Este backend **no genera contexto**: espera que el cliente prepare los prompts.
+> ⚠️ Este motor **no genera contexto automáticamente**: espera que el cliente prepare los prompts (por eso se llama “motor”).
+
+---
 
 ## 🧪 IA modular y tolerante a fallos
 
@@ -63,23 +74,31 @@ La carpeta `lib/` contiene toda la lógica desacoplada para interacción con mod
 - 📊 Selección de proveedor por disponibilidad
 - 🔁 Fallback automático en caso de error
 - 🧩 Organización clara por servicio y modelo
+- ⚙️ Modularidad total para extender o cambiar proveedores sin alterar el núcleo
+
+---
 
 ## 📜 Licencia
 
-Este proyecto está bajo la licencia MIT. Consultá el archivo [`LICENSE`](./LICENSE) para más detalles.
+Este proyecto está bajo la licencia MIT.  
+Consultá el archivo [`LICENSE`](./LICENSE) para más detalles.
+
+---
 
 ## 🧭 Ecosistema completo
 
-Este backend forma parte de un sistema modular junto al frontend visual embebible:
+Este motor forma parte del ecosistema IA modular creado por Mauricio Belforte. Está diseñado para integrarse con frontends funcionales, demos personalizadas y otras herramientas IA:
 
-- 🎨 Interfaz visual desacoplada: [`chatbot-frontend-embed`](https://github.com/tu-usuario/chatbot-frontend-embed)
-- 📚 Proyecto histórico original: [`chatbot-flotante`](https://github.com/tu-usuario/chatbot-flotante)
+- 🎨 Frontend funcional: [`chatbot-frontend-funcional`](https://github.com/MauricioBelforte/chatbot-frontend-funcional)
+- 💬 Demo personalizada: [`demo-mi-chatbot-personal`](https://github.com/MauricioBelforte/demo-mi-chatbot-personal)
+- 📚 Cápsula técnica original: [`chatbot-flotante-historial`](https://github.com/MauricioBelforte/chatbot-flotante-historial)
 
 ---
 
 ```bash
-# Versión actual: v1.0-backend
+# Versión actual: v1.1-motor
 # Autor: Mauricio Belforte
 ```
-```
+
+---
 

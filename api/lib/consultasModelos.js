@@ -20,27 +20,32 @@ export async function consultarModelosConFallback(promptSistema, promptUsuario, 
 
     for (const nombreProveedor of proveedoresAIntentar) {
         const modelos = modelosPorProveedor[nombreProveedor];
-        if (!modelos || modelos.length === 0) continue;
-
-        // Por simplicidad, intentamos con el primer modelo de cada proveedor.
-        // Se podría extender para intentar con todos los modelos de un proveedor.
-        const modelo = modelos[0];
-        console.log(`➡️ Intentando con Proveedor: ${nombreProveedor}, Modelo: ${modelo}`);
-
-        try {
-            const respuesta = await realizarConsulta(nombreProveedor, modelo, promptSistema, promptUsuario);
-            if (respuesta) {
-                console.log(`✅ Éxito con Proveedor: ${nombreProveedor}`);
-                console.log(`💬 Respuesta extraída (primeros 100 chars): "${respuesta.substring(0, 100)}..."`);
-                return respuesta;
-            }
-            console.warn(`⚠️ Fallo o respuesta vacía de ${nombreProveedor}. Probando siguiente...`);
-        } catch (error) {
-            console.error(`❌ Error crítico con ${nombreProveedor}:`, error.message);
+        if (!modelos || modelos.length === 0) {
+            console.warn(`⚠️ No hay modelos configurados para el proveedor: ${nombreProveedor}`);
+            continue;
         }
+
+        for (const modelo of modelos) {
+            console.log(`➡️ Intentando con Proveedor: ${nombreProveedor}, Modelo: ${modelo}`);
+
+            try {
+                const respuesta = await realizarConsulta(nombreProveedor, modelo, promptSistema, promptUsuario);
+                if (respuesta) {
+                    console.log(`✅ Éxito con Proveedor: ${nombreProveedor}, Modelo: ${modelo}`);
+                    console.log(`💬 Respuesta extraída (primeros 100 chars): "${respuesta.substring(0, 100)}..."`);
+                    return respuesta; // Éxito, salimos de todo
+                }
+                // Si la respuesta es nula pero no hay error, el bucle continúa al siguiente modelo/proveedor.
+            } catch (error) {
+                console.error(`❌ Error con ${nombreProveedor} (${modelo}):`, error.message);
+                // No rompemos el bucle, simplemente continuamos con el siguiente modelo.
+            }
+        }
+        // Si llegamos aquí, todos los modelos de este proveedor fallaron.
+        console.warn(`⚠️ Todos los modelos de ${nombreProveedor} fallaron. Probando siguiente proveedor...`);
     }
 
-    console.error("🚫 Todos los proveedores fallaron.");
+    console.error("🚫 Todos los proveedores y sus modelos fallaron.");
     return null; // O un mensaje de error por defecto
 }
 

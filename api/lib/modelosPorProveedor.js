@@ -13,11 +13,13 @@ export const modelosPorProveedor = {
         "qwen-2.5-coder-32b"
     ],
     gemini: [
-        "gemini-1.5-flash-latest", // Buena opción si buscas un modelo rápido con generosos límites.
-        "gemini-1.5-pro-latest", // Muy potente, pero con límites de uso gratuito más estrictos.
-        "gemini-2.5-flash-latest", // La mejor opción de la familia Gemini para uso gratuito masivo.
-        "gemini-2.5-pro-latest", // El más potente, pero con los límites de uso gratuito más bajos.
-        "gemma-2-9b-it" // Más tokens gratis, sin tantas restricciones de frecuencia.
+        "gemini-1.5-flash-latest", // Modelo rápido y compatible con la API de Google AI Studio (v1beta).
+        "gemini-1.5-pro-latest",   // Modelo potente, también compatible.
+        // Los siguientes modelos (gemma, 2.5) pueden no estar disponibles en la API v1beta
+        // o requerir acceso a través de Vertex AI. Los dejamos comentados para evitar errores.
+        // "gemini-2.5-flash-latest",
+        // "gemini-2.5-pro-latest",
+        // "gemma-2-9b-it"
     ],
     together: [
         "Qwen/Qwen3-235B-A22B-Instruct-2507-tput",

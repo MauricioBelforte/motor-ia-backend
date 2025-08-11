@@ -31,6 +31,7 @@ export async function consultarModelosConFallback(promptSistema, promptUsuario, 
             const respuesta = await realizarConsulta(nombreProveedor, modelo, promptSistema, promptUsuario);
             if (respuesta) {
                 console.log(`✅ Éxito con Proveedor: ${nombreProveedor}`);
+                console.log(`💬 Respuesta extraída (primeros 100 chars): "${respuesta.substring(0, 100)}..."`);
                 return respuesta;
             }
             console.warn(`⚠️ Fallo o respuesta vacía de ${nombreProveedor}. Probando siguiente...`);
@@ -54,9 +55,13 @@ export async function consultarModelosConFallback(promptSistema, promptUsuario, 
  */
 async function realizarConsulta(nombreProveedor, modelo, promptSistema, promptUsuario) {
     const proveedor = proveedores[nombreProveedor];
-    if (!proveedor || !proveedor.key) {
-        console.error(`Proveedor ${nombreProveedor} no configurado o sin API Key.`);
-        return null;
+    if (!proveedor) {
+        // Esto no debería ocurrir si ORDEN_PROVEEDORES es correcto, pero es una buena salvaguarda.
+        throw new Error(`Proveedor "${nombreProveedor}" no se encuentra en la configuración de proveedores.js.`);
+    }
+    if (!proveedor.key) {
+        // Error de configuración crítico. Lanzamos un error para que sea capturado y logueado.
+        throw new Error(`Falta la API Key para el proveedor: ${nombreProveedor}. Revisa las variables de entorno.`);
     }
 
     let url = proveedor.endpoint;
@@ -101,6 +106,9 @@ async function realizarConsulta(nombreProveedor, modelo, promptSistema, promptUs
     }
 
     const data = await response.json();
+
+    // Log para depuración: muestra la respuesta completa de la API
+    console.log(`📦 Datos recibidos de ${nombreProveedor}:`, JSON.stringify(data, null, 2));
 
     // Extraer la respuesta según el formato de la API
     if (nombreProveedor === 'gemini') {

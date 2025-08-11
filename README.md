@@ -12,7 +12,7 @@ Backend desacoplado, modular y serverless, listo para responder prompts IA desde
 Este repositorio contiene la capa lógica y de procesamiento IA del sistema, separada del frontend visual. Está pensado para integrarse desde cualquier cliente mediante `fetch()`:
 
 - 🔄 Motor IA independiente del entorno visual
-- 🧪 Compatible con múltiples proveedores como OpenRouter, Groq, Ollama
+- 🧪 Compatible con múltiples proveedores como Gemini, OpenRouter, Groq y Together
 - 🧰 Listo para ser consultado por cualquier frontend, CMS o sistema externo
 - 🌐 Desplegado en Vercel con rutas controladas
 
@@ -76,6 +76,8 @@ La carpeta `lib/` contiene toda la lógica desacoplada para interacción con mod
 - 🧩 Organización clara por servicio y modelo
 - ⚙️ Modularidad total para extender o cambiar proveedores sin alterar el núcleo
 
+Para cambiar el orden de prioridad de los proveedores, simplemente edita el array `ORDEN_PROVEEDORES` en el archivo `api/lib/consultasModelos.js`. Por defecto, el orden es `["gemini", "openrouter", "groq", "together"]`, dando prioridad a Gemini.
+
 ---
 
 ## 📜 Licencia
@@ -101,4 +103,3 @@ Este motor forma parte del ecosistema IA modular creado por Mauricio Belforte. E
 ```
 
 ---
-

@@ -3,7 +3,7 @@ import { modelosPorProveedor } from './modelosPorProveedor.js';
 
 // Define el orden de preferencia de los proveedores.
 // Puedes cambiar este orden para priorizar a Gemini, Groq, etc.
-const ORDEN_PROVEEDORES = ["openrouter", "gemini", "groq", "together"];
+const ORDEN_PROVEEDORES = ["gemini", "openrouter", "groq", "together"];
 
 /**
  * Función principal que itera sobre los proveedores en el orden definido

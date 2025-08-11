@@ -2,6 +2,14 @@
 
 Este documento registra los cambios importantes realizados en el proyecto `motor-ia-backend`.
 
+## Versión 2.1 - Priorización de Gemini
+
+### ⚙️ Cambios en Configuración
+
+*   **Prioridad de Proveedores**: Se ha modificado el orden de proveedores en `consultasModelos.js` para establecer a **Gemini** como el proveedor principal por defecto. El motor ahora intentará realizar las consultas primero con Gemini antes de pasar a los proveedores de fallback (OpenRouter, Groq, etc.).
+
+---
+
 ## Versión 2.0 - Refactorización del Motor de Consultas y Soporte para Gemini
 
 Esta actualización introduce una reescritura completa de la lógica de consulta a los modelos de IA, pasando de un sistema de fallback fijo a una arquitectura dinámica y mucho más robusta. Además, se integra oficialmente la API de Gemini.

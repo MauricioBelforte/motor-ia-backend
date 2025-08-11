@@ -7,6 +7,10 @@ export const proveedores = {
         endpoint: "https://api.groq.com/openai/v1/chat/completions",
         key: process.env.GROQ_API_KEY
     },
+    gemini: {
+        endpoint: "https://generativelanguage.googleapis.com/v1beta/models",
+        key: process.env.GEMINI_API_KEY
+    },
     together: {
         endpoint: "https://api.together.xyz/v1/chat/completions",
         key: process.env.TOGETHER_API_KEY

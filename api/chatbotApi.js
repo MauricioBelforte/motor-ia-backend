@@ -1,6 +1,6 @@
 // api/chatbotApi.js
 
-import { chequearLimiteOpenRouter } from "./lib/estadoOpenRouter.js";
+// import { chequearLimiteOpenRouter } from "./lib/estadoOpenRouter.js"; // Desactivado para optimizar latencia.
 import { consultarModelosConFallback } from "./lib/consultasModelos.js";
 
 // 🔁 Función serverless que responde peticiones POST con un mensaje del modelo
@@ -37,13 +37,15 @@ export default async function handler(req, res) {
     }
 
     try {
-        // 🔐 Validamos si OpenRouter está degradado para pasarlo como flag
-        const estadoOpenRouter = await chequearLimiteOpenRouter();
+        // 🔐 El chequeo de estado de OpenRouter se desactiva por defecto para minimizar la latencia en producción.
+       /*   Para realizar pruebas de degradación del servicio, se puede descomentar la importación de arriba,
+         la siguiente línea y pasar `estadoOpenRouter.degradado` como tercer argumento a la función de abajo. */
+        // const estadoOpenRouter = await chequearLimiteOpenRouter();
         
         console.log("Recibidos prompts. Iniciando consulta a modelos...");
         
         // 📡 Consultamos a los modelos con la nueva lógica de fallback
-        const respuesta = await consultarModelosConFallback(promptSistema, promptUsuario, estadoOpenRouter.degradado);
+        const respuesta = await consultarModelosConFallback(promptSistema, promptUsuario);
         
         if (respuesta) {
             // 📤 Devolvemos la respuesta generada al frontend

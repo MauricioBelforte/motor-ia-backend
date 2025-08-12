@@ -14,11 +14,14 @@ const ORDEN_PROVEEDORES = ["gemini", "openrouter", "groq", "together"];
  * @returns {Promise<string|null>} La respuesta del modelo o null si todos fallan.
  */
 export async function consultarModelosConFallback(promptSistema, promptUsuario, openRouterDegradado = false) {
-    const proveedoresAIntentar = openRouterDegradado
-        ? ORDEN_PROVEEDORES.filter(p => p !== "openrouter")
-        : ORDEN_PROVEEDORES;
+    const proveedoresAIntentar = ORDEN_PROVEEDORES;
 
     for (const nombreProveedor of proveedoresAIntentar) {
+        if (nombreProveedor === 'openrouter' && openRouterDegradado) {
+            console.warn("⏭️ Saltando OpenRouter porque su límite de uso fue alcanzado.");
+            continue;
+        }
+
         const modelos = modelosPorProveedor[nombreProveedor];
         if (!modelos || modelos.length === 0) {
             console.warn(`⚠️ No hay modelos configurados para el proveedor: ${nombreProveedor}`);

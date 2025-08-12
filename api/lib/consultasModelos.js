@@ -74,15 +74,15 @@ async function realizarConsulta(nombreProveedor, modelo, promptSistema, promptUs
 
     if (nombreProveedor === 'gemini') {
         // Lógica específica para la API de Gemini
-        url = `${proveedor.endpoint}/${modelo}:generateContent?key=${proveedor.key}`;
+        url = `${proveedor.endpoint}/${modelo}:generateContent`;
         options = {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                "x-goog-api-key": proveedor.key // Método recomendado para enviar la API Key
+            },
             body: JSON.stringify({
-                contents: [
-                    // Gemini combina el prompt de sistema y de usuario
-                    { role: "user", parts: [{ text: `${promptSistema}\n\n${promptUsuario}` }] }
-                ]
+                contents: [{ role: "user", parts: [{ text: `${promptSistema}\n\n${promptUsuario}` }] }]
             })
         };
     } else {
@@ -111,8 +111,6 @@ async function realizarConsulta(nombreProveedor, modelo, promptSistema, promptUs
     }
 
     const data = await response.json();
-
-    // Log para depuración: muestra la respuesta completa de la API
     console.log(`📦 Datos recibidos de ${nombreProveedor}:`, JSON.stringify(data, null, 2));
 
     // Extraer la respuesta según el formato de la API

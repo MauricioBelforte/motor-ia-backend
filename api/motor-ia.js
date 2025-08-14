@@ -1,7 +1,7 @@
-// api/chatbotApi.js
+// api/motor-ia.js
 
-// import { chequearLimiteOpenRouter } from "./lib/estadoOpenRouter.js"; // Desactivado para optimizar latencia.
-import { consultarModelosConFallback } from "./lib/consultasModelos.js";
+// import { chequearLimiteOpenRouter } from "../lib/estadoOpenRouter.js"; // Desactivado para optimizar latencia.
+import { consultarModelosConFallback } from "../lib/consultasModelos.js";
 
 // 🔁 Función serverless que responde peticiones POST con un mensaje del modelo
 export default async function handler(req, res) {
@@ -44,11 +44,9 @@ export default async function handler(req, res) {
         
         console.log("Recibidos prompts. Iniciando consulta a modelos...");
         
-        // 📡 Consultamos a los modelos con la nueva lógica de fallback
         const respuesta = await consultarModelosConFallback(promptSistema, promptUsuario);
         
         if (respuesta) {
-            // 📤 Devolvemos la respuesta generada al frontend
             res.status(200).json({ respuesta });
         } else {
             res.status(503).json({ error: "Todos los proveedores de IA fallaron. Intente de nuevo más tarde." });

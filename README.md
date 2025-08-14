@@ -23,7 +23,7 @@ Este repositorio contiene la capa lógica y de procesamiento IA del sistema, sep
 ```text
 motor-ia-backend/
 ├── api/
-│   └── chatbotApi.js            # Endpoint principal: procesa prompts y responde
+│   └── motor-ia.js              # Endpoint principal: procesa prompts y responde
 ├── lib/
 │   ├── consultasModelos.js      # Lógica por modelo específico
 │   ├── estadoOpenRouter.js      # Control dinámico de disponibilidad
@@ -42,12 +42,12 @@ motor-ia-backend/
 Ejemplo usando `fetch()`:
 
 ```js
-const res = await fetch("https://motor-ia-backend.vercel.app/api/chatbotApi", {
+const res = await fetch("https://motor-ia-backend.vercel.app/api/motor-ia", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    systemPrompt: "Respondé como mentor técnico.",
-    userPrompt: "¿Qué es un stream en JavaScript?"
+    promptSistema: "Respondé como mentor técnico.",
+    promptUsuario: "¿Qué es un stream en JavaScript?"
   })
 });
 const { respuesta } = await res.json();
@@ -58,8 +58,8 @@ console.log(respuesta);
 
 ```json
 {
-  "systemPrompt": "Define el tono y rol del asistente",
-  "userPrompt": "Mensaje original del usuario"
+  "promptSistema": "Define el tono y rol del asistente",
+  "promptUsuario": "Mensaje original del usuario"
 }
 ```
 

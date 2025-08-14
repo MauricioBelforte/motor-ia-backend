@@ -1,7 +1,8 @@
 // api/motor-ia.js
 
-// import { chequearLimiteOpenRouter } from "../lib/estadoOpenRouter.js"; // Desactivado para optimizar latencia.
-import { consultarModelosConFallback } from "../lib/consultasModelos.js";
+// import { chequearLimiteOpenRouter } from "./lib/estadoOpenRouter.js"; // Desactivado para optimizar latencia.
+import { consultarModelosConFallback } from "./lib/consultasModelos.js";
+// Hubo una actualizacion en el nombre de la ruta , se cambiaron los .. por uno solo .
 
 // 🔁 Función serverless que responde peticiones POST con un mensaje del modelo
 export default async function handler(req, res) {

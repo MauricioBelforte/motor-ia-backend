@@ -1,10 +1,10 @@
 export const modelosPorProveedor = {
     openrouter: [
-        
+
         //"deepseek/deepseek-r1-0528:free", // Se demora pero genera una respuesta larga y coherente.
         "meta-llama/llama-3.3-70b-instruct:free",
-        "mistralai/mistral-small-3.2-24b-instruct",
-        "mistralai/mistral-small-3.1-24b-instruct:free"        // ✅ Este es el que te funcionó en los logs.
+        "mistralai/mistral-small-3.1-24b-instruct:free"       // ✅ Este es el que te funcionó en los logs.
+        //"mistralai/mistral-small-3.2-24b-instruct",
 
 
     ],

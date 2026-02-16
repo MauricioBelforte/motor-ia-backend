@@ -19,14 +19,15 @@ export const modelosPorProveedor = {
     gemini: [
 
 
-        // --- Versiones anteriores (funcionando) ---
-        "gemini-1.5-flash-latest",
-        "gemini-1.5-pro-latest",
+        
 
         // Mejores modelos de Gemini disponibles pero consumen mas
         "gemini-2.5-flash", // 🚀 Flash 2.5: Mejoras en velocidad y contexto.
         "gemini-2.5-flash-lite", // ⚡ Flash 2.5 Lite: Ultra rápido para tareas simples.
-        "gemini-3-flash-preview" // ⚡ Avance del próximo modelo Flash.
+        "gemini-3-flash-preview", // ⚡ Avance del próximo modelo Flash.
+        // --- Versiones anteriores---
+        "gemini-1.5-flash-latest", //No funciona actualmente
+        "gemini-1.5-pro-latest" //No funciona actualmente
 
     ],
     together: [

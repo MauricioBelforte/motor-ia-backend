@@ -12,7 +12,7 @@ Backend desacoplado, modular y serverless, listo para responder prompts IA desde
 Este repositorio contiene la capa lógica y de procesamiento IA del sistema, separada del frontend visual. Está pensado para integrarse desde cualquier cliente mediante `fetch()`:
 
 - 🔄 Motor IA independiente del entorno visual
-- 🧪 Compatible con múltiples proveedores como OpenRouter, Groq, Ollama
+- 🧪 Compatible con múltiples proveedores como Gemini, OpenRouter, Groq y Together
 - 🧰 Listo para ser consultado por cualquier frontend, CMS o sistema externo
 - 🌐 Desplegado en Vercel con rutas controladas
 
@@ -23,7 +23,7 @@ Este repositorio contiene la capa lógica y de procesamiento IA del sistema, sep
 ```text
 motor-ia-backend/
 ├── api/
-│   └── chatbotApi.js            # Endpoint principal: procesa prompts y responde
+│   └── motor-ia.js              # Endpoint principal: procesa prompts y responde
 ├── lib/
 │   ├── consultasModelos.js      # Lógica por modelo específico
 │   ├── estadoOpenRouter.js      # Control dinámico de disponibilidad
@@ -42,12 +42,12 @@ motor-ia-backend/
 Ejemplo usando `fetch()`:
 
 ```js
-const res = await fetch("https://motor-ia-backend.vercel.app/api/chatbotApi", {
+const res = await fetch("https://motor-ia-backend.vercel.app/api/motor-ia", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    systemPrompt: "Respondé como mentor técnico.",
-    userPrompt: "¿Qué es un stream en JavaScript?"
+    promptSistema: "Respondé como mentor técnico.",
+    promptUsuario: "¿Qué es un stream en JavaScript?"
   })
 });
 const { respuesta } = await res.json();
@@ -58,8 +58,8 @@ console.log(respuesta);
 
 ```json
 {
-  "systemPrompt": "Define el tono y rol del asistente",
-  "userPrompt": "Mensaje original del usuario"
+  "promptSistema": "Define el tono y rol del asistente",
+  "promptUsuario": "Mensaje original del usuario"
 }
 ```
 
@@ -75,6 +75,8 @@ La carpeta `lib/` contiene toda la lógica desacoplada para interacción con mod
 - 🔁 Fallback automático en caso de error
 - 🧩 Organización clara por servicio y modelo
 - ⚙️ Modularidad total para extender o cambiar proveedores sin alterar el núcleo
+
+Para cambiar el orden de prioridad de los proveedores, simplemente edita el array `ORDEN_PROVEEDORES` en el archivo `api/lib/consultasModelos.js`. Por defecto, el orden es `["gemini", "openrouter", "groq", "together"]`, dando prioridad a Gemini.
 
 ---
 
@@ -101,4 +103,3 @@ Este motor forma parte del ecosistema IA modular creado por Mauricio Belforte. E
 ```
 
 ---
-

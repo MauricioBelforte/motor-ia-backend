@@ -2,6 +2,6 @@
 
 export default function handler(req, res) {
   res.status(200).json({
-    mensaje: "🚀 Este backend está activo. Usá POST en /api/chatbotApi para enviar prompts."
+    mensaje: "🚀 Motor IA activo. Usa POST en /api/motor-ia para enviar prompts."
   });
 }

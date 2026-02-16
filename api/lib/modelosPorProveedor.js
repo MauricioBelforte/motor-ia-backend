@@ -3,7 +3,7 @@ export const modelosPorProveedor = {
 
         //"deepseek/deepseek-r1-0528:free", // Se demora pero genera una respuesta larga y coherente.
         // "arcee-ai/trinity-large-preview:free", // FUNCIONANDO
-        "stepfun/step-3.5-flash:free",
+        "stepfun/step-3.5-flash:free", // FUNCIONANDO, resume bien
         "mistralai/mistral-small-3.2-24b-instruct"
 
 

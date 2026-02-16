@@ -7,6 +7,7 @@ const origenesPermitidos = [
     "http://localhost:5500",           // Para tus pruebas locales (Live Server)
     "http://localhost:3000",           // Por si usas React/Vite local
     "https://mauriciobelforte.github.io", // ✅ Correcto: Cubre todo tu dominio (incluyendo /mi-portfolio)
+    "https://mi-chatbot-personal.vercel.app", // 🆕 Demo completa del chatbot
     "https://chatbot-frontend-funcional.vercel.app", // Ejemplo de tu otro frontend
     "null"                             // 🛠️ Permite pruebas desde about:blank o archivos locales
 ];

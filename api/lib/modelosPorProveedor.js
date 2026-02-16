@@ -1,15 +1,7 @@
 export const modelosPorProveedor = {
     openrouter: [
         
-
-        "google/gemini-2.0-pro-exp-02-05:free",
-
-        "google/gemini-2.0-flash-lite-preview-02-05:free", // Nuevo modelo gratuito en OpenRouter.
-        "mistralai/mistral-7b-instruct:free",              // Un clásico muy estable.
-        "meta-llama/llama-3-8b-instruct:free",             // Rápido y fiable.
-        "microsoft/phi-3-mini-128k-instruct:free",         // Muy ligero y rápido.
-        
-        "deepseek/deepseek-r1-0528:free",
+        //"deepseek/deepseek-r1-0528:free", // Se demora pero genera una respuesta larga y coherente.
         "meta-llama/llama-3.3-70b-instruct:free",
         "mistralai/mistral-small-3.2-24b-instruct",
         "mistralai/mistral-small-3.1-24b-instruct:free"        // ✅ Este es el que te funcionó en los logs.

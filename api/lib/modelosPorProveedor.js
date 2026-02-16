@@ -1,8 +1,8 @@
 export const modelosPorProveedor = {
     openrouter: [
 
-        //"deepseek/deepseek-r1-0528:free", // Se demora pero genera una respuesta larga y coherente.
-        // "arcee-ai/trinity-large-preview:free", // FUNCIONANDO
+        "deepseek/deepseek-r1-0528:free", // Se demora pero genera una respuesta larga y coherente.
+        "arcee-ai/trinity-large-preview:free", // FUNCIONANDO
         "stepfun/step-3.5-flash:free", // FUNCIONANDO, resume bien
         "mistralai/mistral-small-3.2-24b-instruct"
 
@@ -20,13 +20,13 @@ export const modelosPorProveedor = {
 
 
         // --- Versiones anteriores (funcionando) ---
-        // "gemini-1.5-flash-latest",
-        // "gemini-1.5-pro-latest",
+        "gemini-1.5-flash-latest",
+        "gemini-1.5-pro-latest",
 
         // Mejores modelos de Gemini disponibles pero consumen mas
         //"gemini-3-flash-preview", // ⚡ Avance del próximo modelo Flash.
-        //"gemini-2.5-flash", // 🚀 Flash 2.5: Mejoras en velocidad y contexto.
-        //"gemini-2.5-flash-lite", // ⚡ Flash 2.5 Lite: Ultra rápido para tareas simples.
+        "gemini-2.5-flash", // 🚀 Flash 2.5: Mejoras en velocidad y contexto.
+        "gemini-2.5-flash-lite", // ⚡ Flash 2.5 Lite: Ultra rápido para tareas simples.
 
     ],
     together: [

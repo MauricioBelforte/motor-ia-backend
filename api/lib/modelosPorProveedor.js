@@ -2,20 +2,18 @@ export const modelosPorProveedor = {
     openrouter: [
 
         //"deepseek/deepseek-r1-0528:free", // Se demora pero genera una respuesta larga y coherente.
-        "meta-llama/llama-3.3-70b-instruct:free",
-        "mistralai/mistral-small-3.1-24b-instruct:free",
-        "arcee-ai/trinity-large-preview:free",      
+        // "arcee-ai/trinity-large-preview:free", // FUNCIONANDO
         "stepfun/step-3.5-flash:free",
         "mistralai/mistral-small-3.2-24b-instruct"
 
 
     ],
     groq: [
-        "llama3-8b-8192",
         "llama-3.1-8b-instant", // FUNCIONANDO
         "gemma2-9b-it",
         "mistral-saba-24b",
         "qwen-2.5-32b",
+        "llama3-8b-8192",
         "qwen-2.5-coder-32b"
     ],
     gemini: [

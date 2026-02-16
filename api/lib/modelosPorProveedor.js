@@ -26,7 +26,7 @@ export const modelosPorProveedor = {
         // TESTEO DE ESTOS MODELOS
         "gemini-3-pro-preview", // 🧪 Avance del próximo modelo Pro.
         //"gemini-3-flash-preview", // ⚡ Avance del próximo modelo Flash.
-        "gemini-2.5-flash", // 🚀 Flash 2.5: Mejoras en velocidad y contexto.
+        //"gemini-2.5-flash", // 🚀 Flash 2.5: Mejoras en velocidad y contexto.
         "gemini-2.5-flash-lite", // ⚡ Flash 2.5 Lite: Ultra rápido para tareas simples.
         "gemini-2.5-pro", // 🧪 Pro 2.5: Mayor capacidad de razonamiento.
         "gemini-2.0-flash",    // 🚀 NUEVO: El más rápido y capaz del tier gratuito.

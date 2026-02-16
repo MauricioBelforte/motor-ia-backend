@@ -2,16 +2,34 @@
 
 import { consultarModelosConFallback } from "./lib/consultasModelos.js";
 
+// 🛡️ LISTA BLANCA: Agrega aquí los dominios que tienen permiso para usar tu API
+const origenesPermitidos = [
+    "http://localhost:5500",           // Para tus pruebas locales (Live Server)
+    "http://localhost:3000",           // Por si usas React/Vite local
+    "https://mauriciobelforte.github.io", // ⚠️ REEMPLAZA ESTO con tu dominio real de GitHub Pages o Vercel
+    "https://chatbot-frontend-funcional.vercel.app", // Ejemplo de tu otro frontend
+    "null"                             // 🛠️ Permite pruebas desde about:blank o archivos locales
+];
+
 // 🔁 Función serverless que responde peticiones POST con un mensaje del modelo
 export default async function handler(req, res) {
-    // CORS: aceptar solicitudes desde otros orígenes
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    // 🕵️‍♂️ Verificamos el origen de la petición
+    const origen = req.headers.origin;
+
+    // 🛡️ Bloque de seguridad CORS: Solo permitimos orígenes de la lista blanca.
+    // La condición `!origen` permite peticiones sin origen (como Postman) para facilitar las pruebas.
+    // Para una seguridad máxima en producción, podrías eliminar `|| !origen`.
+    if (origen && !origenesPermitidos.includes(origen)) {
+        return res.status(403).json({ error: "Acceso denegado: Origen no permitido." });
+    }
+
+    // Si el origen es válido (o no existe), configuramos los headers para permitir la comunicación.
+    res.setHeader("Access-Control-Allow-Origin", origen || "*");
     res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
     if (req.method === "OPTIONS") {
-        res.status(200).end();
-        return;
+        return res.status(204).end(); // Usar 204 No Content es más estándar para preflight
     }
 
     // ⛔ Solo aceptamos POST (evita GET, PUT, etc.)
